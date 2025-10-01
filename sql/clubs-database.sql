@@ -32,6 +32,7 @@ CREATE TABLE Memberships (
 INSERT INTO Memberships VALUES
 (101, 1, "Electronics Designer", "2024-01-23"),
 (102, 1, "Researcher", "2024-01-30"),
+(102, 2, "Watercolours", "2024-01-30"),
 (103, 2, "Oil Paints", "2023-04-01"),
 (104, 2, "Oil Paints", "2025-10-21"),
 (105, 2, "Clay", "2025-10-21"),
@@ -63,9 +64,11 @@ INSERT INTO Attendance VALUES
 (912, 101, false),
 (912, 102, true),
 
+(921, 102, true),
 (921, 103, false),
 (921, 104, true),
 (921, 105, true),
+(922, 102, false),
 (922, 103, true),
 (922, 104, true),
 (922, 105, false),
@@ -73,3 +76,8 @@ INSERT INTO Attendance VALUES
 (931, 106, true),
 (932, 106, true),
 (933, 106, true);
+
+--Specific Student's Clubs by id
+SELECT ClubName FROM Clubs WHERE ClubID IN (SELECT ClubID FROM Memberships WHERE StudentId=102);
+--Attendance Rate
+SELECT StudentName, StudentID, COUNT(SELECT * FROM Attendance WHERE DidAttend=true AND StudentId=StudentID) AS TotalAttended FROM Students;
