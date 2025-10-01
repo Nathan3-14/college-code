@@ -5,8 +5,12 @@ CREATE TABLE Students (
     StudentEmail VARCHAR(50)
 );
 INSERT INTO Students VALUES
-(),
-();
+(101, "Alfie Able", 13, "101@student.stbrn.ac.uk"),
+(102, "Barry Bower", 12, "102@student.stbrn.ac.uk"),
+(103, "Carol Christie", 13, "103@student.stbrn.ac.uk"),
+(104, "Dave Dance", 13, "104@student.stbrn.ac.uk"),
+(105, "Errol Etcher", 12, "105@student.stbrn.ac.uk"),
+(106, "Fynn Forest", 13, "106@student.stbrn.ac.uk");
 
 CREATE TABLE Clubs (
     ClubID INT PRIMARY KEY,
@@ -58,12 +62,14 @@ INSERT INTO Attendance VALUES
 (911, 102, true),
 (912, 101, false),
 (912, 102, true),
+
 (921, 103, false),
 (921, 104, true),
 (921, 105, true),
 (922, 103, true),
 (922, 104, true),
 (922, 105, false),
+
 (931, 106, true),
 (932, 106, true),
 (933, 106, true);
