@@ -1,9 +1,9 @@
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY,
-    ProductName VARCHAR(50),
-    ProductCategory VARCHAR(30),
-    ProductPrice INT,
-    ProductStock INT
+    Name VARCHAR(50),
+    Category VARCHAR(30),
+    Price INT,
+    Stock INT
 );
 INSERT INTO Products VALUES
 (1, "Laptop", "Computing", 899, 12),
@@ -14,7 +14,7 @@ INSERT INTO Products VALUES
 
 CREATE TABLE Suppliers (
     SupplierID INT PRIMARY KEY,
-    SupplierName VARCHAR(50),
+    Name VARCHAR(50),
     ProductID INT,
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
@@ -25,10 +25,23 @@ INSERT INTO Suppliers VALUES
 (104, "KeyGear", 4),
 (105, "MobileMart", 5);
 
-SELECT Suppliers.SupplierName, Products.ProductName, Products.ProductPrice FROM
-Suppliers JOIN Products ON Suppliers.ProductID=Products.ProductID
-WHERE Products.ProductPrice > 200;
+SELECT
+	Suppliers.Name,
+    Products.Name,
+    Products.Price
+FROM
+	Suppliers
+    JOIN Products ON Suppliers.ProductID=Products.ProductID
+WHERE
+	Products.Price > 200;
 
-SELECT ProductName AS ItemName FROM Products
-UNION
-SELECT SupplierName FROM Suppliers;
+
+SELECT
+	Suppliers.Name AS SupplierName,
+	Products.Name AS ProductName,
+	Products.Price AS Price
+FROM
+	Suppliers
+    LEFT JOIN Products ON Suppliers.ProductID=Products.ProductID
+WHERE 
+	Products.Price > 600;
