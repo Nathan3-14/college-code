@@ -1,9 +1,9 @@
 CREATE TABLE Products (
-    ProductID INT,
-    Name VARCHAR(50),
-    Category VARCHAR(30),
-    Price INT,
-    Stock INT
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    ProductCategory VARCHAR(30),
+    ProductPrice INT,
+    ProductStock INT
 );
 INSERT INTO Products VALUES
 (1, "Laptop", "Computing", 899, 12),
@@ -13,16 +13,22 @@ INSERT INTO Products VALUES
 (5, "Smartphone", "Mobile", 699, 15);
 
 CREATE TABLE Suppliers (
-    SupplierID INT,
+    SupplierID INT PRIMARY KEY,
     SupplierName VARCHAR(50),
-    ProductID INT
+    ProductID INT,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 INSERT INTO Suppliers VALUES
-(101, "TechSource Ltd", 1), --
+(101, "TechSource Ltd", 1),
 (102, "GadgetWorld", 2),
 (103, "DisplayCo", 3),
 (104, "KeyGear", 4),
-(105, "MobileMart", 5); --
+(105, "MobileMart", 5);
 
---SELECT Category, AVG(Price) AS AveragePrice FROM Products GROUP BY Category;
-SELECT SupplierName FROM Suppliers JOIN Products WHERE Price > 200;
+SELECT Suppliers.SupplierName, Products.ProductName, Products.ProductPrice FROM
+Suppliers JOIN Products ON Suppliers.ProductID=Products.ProductID
+WHERE Products.ProductPrice > 200;
+
+SELECT ProductName AS ItemName FROM Products
+UNION
+SELECT SupplierName FROM Suppliers;
