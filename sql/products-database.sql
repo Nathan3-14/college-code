@@ -10,7 +10,8 @@ INSERT INTO Products VALUES
 (2, "Mouse", "Accessories", 25, 50),
 (3, "Monitor", "Computing", 199, 20),
 (4, "Keyboard", "Accessories", 45, 30),
-(5, "Smartphone", "Mobile", 699, 15);
+(5, "Smartphone", "Mobile", 699, 15),
+(6, "No-Supplier Product", "Testing", 800, 10);
 
 CREATE TABLE Suppliers (
     SupplierID INT PRIMARY KEY,
@@ -23,7 +24,8 @@ INSERT INTO Suppliers VALUES
 (102, "GadgetWorld", 2),
 (103, "DisplayCo", 3),
 (104, "KeyGear", 4),
-(105, "MobileMart", 5);
+(105, "MobileMart", 5),
+(106, "No-Product Supplier", 7);
 
 SELECT
 	Suppliers.Name,
@@ -41,7 +43,5 @@ SELECT
 	Products.Name AS ProductName,
 	Products.Price AS Price
 FROM
-	Suppliers
-    LEFT JOIN Products ON Suppliers.ProductID=Products.ProductID
-WHERE 
-	Products.Price > 600;
+	Products
+    FULL JOIN Suppliers ON Suppliers.ProductID=Products.ProductID;
